@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # actions/setup-java ကို v4 မှ v5 သို့ မြှင့်တင်လိုက်သည်
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
@@ -18,8 +17,11 @@ jobs:
           
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: '3.22.2'
           
+      # Android ဖိုင်တွဲအသစ်ကို အလိုအလျောက် ပြန်ဆောက်ပေးမည့် အမိန့်
+      - run: flutter create . --project-name smart_pdf_scanner
+      
       - run: flutter pub get
       - run: flutter build apk --release
       
